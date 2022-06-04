@@ -4,14 +4,14 @@ const getRandomNumber = function(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
   }
-  alert(`число "${min}" должно быть больше или равно "0", а также меньше числа "${max}"`)
-}
-getRandomNumber(2, 7)
+  return null;
+};
+getRandomNumber(2, 7);
 
 const getRandomCoordinate = function(min, max, digits) {
   if(min >= 0 && min <= max) {
-    return (Math.random() * (max - min) + min).toFixed(digits)
+    return (Math.random() * (max - min) + min).toFixed(digits);
   }
-  alert(`число "${min}" должно быть больше или равно "0", а также меньше числа "${max}"`)
-}
-getRandomCoordinate(2.123, 9.12, 2)
+  return null;
+};
+getRandomCoordinate(2.123, 9.12, 2);
