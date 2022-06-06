@@ -80,6 +80,4 @@ const createAd = function() {
   };
 };
 
-const ads = Array.from({ length: 10 }, createAd);
-
-console.log(ads);
+Array.from({ length: 10 }, createAd);
