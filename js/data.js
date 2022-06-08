@@ -1,4 +1,4 @@
-import { getRandomPositiveFloat, getRandomPositiveInteger } from "./util.js";
+import { getRandomPositiveFloat, getRandomPositiveInteger } from './util.js';
 
 const AVATAR = [1,2,3,4,5,6,7,8,9,1];
 const TITLE = [
