@@ -133,7 +133,7 @@ const getOfferPhotos = function(card, photos) {
   return elm;
 };
 
-const renderPopup = function(data) {
+const renderСards = function(data) {
   const mapCanvas = document.querySelector('#map-canvas');
   const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
   const cards = [];
@@ -160,4 +160,4 @@ const renderPopup = function(data) {
   mapCanvas.append(cards[7]);
 };
 
-renderPopup(dataAds());
+renderСards(dataAds());
