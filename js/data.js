@@ -68,8 +68,8 @@ const createAd = function() {
   };
 };
 
-const data = function() {
+const dataAds = function() {
   return Array.from({ length: 10 }, createAd);
 };
 
-export {data};
+export {dataAds};
