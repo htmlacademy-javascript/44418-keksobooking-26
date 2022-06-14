@@ -1,104 +1,94 @@
 import { dataAds } from './data.js';
 
-const getAuthorAvatar= function(card, avatar) {
+const setAuthorAvatar= function(card, avatar) {
   const elm = card.querySelector('.popup__avatar');
   if(avatar) {
     elm.src = avatar;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferTitle = function(card, title) {
+const setOfferTitle = function(card, title) {
   const elm = card.querySelector('.popup__title');
   if(title) {
     elm.textContent = title;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferAddress = function(card, address) {
+const setOfferAddress = function(card, address) {
   const elm = card.querySelector('.popup__text--address');
   if(address) {
     elm.textContent = address;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferPrice = function(card, price) {
+const setOfferPrice = function(card, price) {
   const elm = card.querySelector('.popup__text--price');
   if(price) {
     elm.textContent = `${price}  ₽/ночь`;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferCapacity= function(card, capacity) {
+const setOfferCapacity= function(card, capacity) {
   const elm = card.querySelector('.popup__text--capacity');
-  const rooms = capacity[0];
-  const guests = capacity[1];
-  if(rooms && guests) {
+  const {rooms, guests} = capacity;
+  if(rooms >= 0 && guests >= 0) {
     elm.textContent = `${rooms} комнаты для ${guests} гостей`;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferTime= function(card, time) {
+const setOfferTime= function(card, time) {
   const elm = card.querySelector('.popup__text--time');
-  const checkin = time[0];
-  const checkout = time[1];
+  const {checkin, checkout} = time;
   if(checkin && checkout) {
     elm.textContent = `Заезд после ${checkin}, выезд до ${checkout}`;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferDescription = function(card, description) {
+const setOfferDescription = function(card, description) {
   const elm = card.querySelector('.popup__description');
   if(description) {
     elm.textContent = description;
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferType = function(card, type) {
+const setOfferType = function(card, type) {
   const elm = card.querySelector('.popup__type');
   switch(type) {
     case 'flat':
       elm.textContent = 'Квартира';
-      return elm;
+      break;
     case 'bungalow':
       elm.textContent = 'Бунгало';
-      return elm;
+      break;
     case 'house':
       elm.textContent = 'Дом';
-      return elm;
+      break;
     case 'palace':
       elm.textContent = 'Дворец';
-      return elm;
+      break;
     case 'hotel':
       elm.textContent = 'Отель';
-      return elm;
+      break;
     default:
       elm.hidden = true;
-      return elm;
   }
 };
 
-const getOfferFeatures = function(card, features) {
+const setOfferFeatures = function(card, features) {
   const elm = card.querySelector('.popup__features');
   elm.textContent = '';
   if(features.length > 0) {
@@ -108,13 +98,12 @@ const getOfferFeatures = function(card, features) {
       item.classList.add(`popup__feature--${element}`);
       elm.append(item);
     });
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
-const getOfferPhotos = function(card, photos) {
+const setOfferPhotos = function(card, photos) {
   const elm = card.querySelector('.popup__photos');
   elm.textContent = '';
   if(photos.length > 0) {
@@ -127,10 +116,9 @@ const getOfferPhotos = function(card, photos) {
       photo.src = element;
       elm.append(photo);
     });
-    return elm;
+  } else {
+    elm.hidden = true;
   }
-  elm.hidden = true;
-  return elm;
 };
 
 const renderСards = function(data) {
@@ -143,16 +131,16 @@ const renderСards = function(data) {
     const {avatar} = author;
     const {title, address, price, rooms, guests, checkin, checkout, type, description, features, photos} = offer;
 
-    getAuthorAvatar(card, avatar);
-    getOfferTitle(card, title);
-    getOfferAddress(card, address);
-    getOfferPrice(card, price);
-    getOfferCapacity(card, [rooms, guests]);
-    getOfferTime(card, [checkin, checkout]);
-    getOfferDescription(card, description);
-    getOfferType(card, type);
-    getOfferFeatures(card, features);
-    getOfferPhotos(card, photos);
+    setAuthorAvatar(card, avatar);
+    setOfferTitle(card, title);
+    setOfferAddress(card, address);
+    setOfferPrice(card, price);
+    setOfferCapacity(card, {rooms, guests});
+    setOfferTime(card, {checkin, checkout});
+    setOfferDescription(card, description);
+    setOfferType(card, type);
+    setOfferFeatures(card, features);
+    setOfferPhotos(card, photos);
 
     cards.push(card);
   });
