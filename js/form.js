@@ -1,9 +1,11 @@
 const form = document.querySelector('.ad-form');
-const formElements = [...form.children];
 const filter = document.querySelector('.map__filters');
-const filterElements = [...filter.children];
 
-const isInactiveState = function() {
+
+const doInactiveState = function() {
+  const formElements = [...form.children];
+  const filterElements = [...filter.children];
+
   form.classList.add('ad-form--disabled');
   formElements.forEach((item) => {
     item.disabled = true;
@@ -15,7 +17,10 @@ const isInactiveState = function() {
   });
 };
 
-const isActiveState = function() {
+const doActiveState = function() {
+  const formElements = [...form.children];
+  const filterElements = [...filter.children];
+
   form.classList.remove('ad-form--disabled');
   formElements.forEach((item) => {
     item.disabled = false;
@@ -27,4 +32,4 @@ const isActiveState = function() {
   });
 };
 
-export {isInactiveState, isActiveState};
+export {doInactiveState, doActiveState};
