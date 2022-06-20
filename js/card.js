@@ -1,5 +1,3 @@
-import { dataAds } from './data.js';
-
 const setAuthorAvatar= function(card, avatar) {
   const elm = card.querySelector('.popup__avatar');
   if(avatar) {
@@ -148,4 +146,4 @@ const renderСards = function(data) {
   mapCanvas.append(cards[7]);
 };
 
-renderСards(dataAds());
+export {renderСards};
