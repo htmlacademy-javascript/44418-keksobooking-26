@@ -359,6 +359,16 @@ fieldset {
   max-width: 50%;
 }
 
+.ad-form__element--valid .ad-form__error {
+  display: none;
+}
+
+.ad-form__element--invalid .ad-form__error {
+  display: block;
+  font-size: 0.85em;
+  color: #c00;
+}
+
 .ad-form__label {
   display: block;
   padding-bottom: 5px;

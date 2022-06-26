@@ -1,8 +1,8 @@
 import { dataAds } from './data.js';
 import { renderСards } from './card.js';
-import { doInactiveState, doActiveState } from './form.js';
+import { doInactiveForm, doActiveForm } from './form.js';
 
 renderСards(dataAds());
 
-doInactiveState();
-doActiveState();
+doInactiveForm();
+doActiveForm();
