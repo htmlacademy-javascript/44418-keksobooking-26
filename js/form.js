@@ -82,6 +82,95 @@ const getRoomNumberErrorMessage = function(value) {
 pristine.addValidator(form.querySelector('#room_number'), validateRoomNumber, getRoomNumberErrorMessage);
 
 
+const validateType = function(value) {
+  const price = form.querySelector('#price');
+
+  if(value === 'bungalow') {
+    price.placeholder = 0;
+    price.min = 0;
+    return true;
+  } else if(value === 'flat') {
+    price.placeholder = 1000;
+    price.min = 1000;
+    return true;
+  } else if(value === 'hotel') {
+    price.placeholder = 3000;
+    price.min = 3000;
+    return true;
+  } else if(value === 'house') {
+    price.placeholder = 5000;
+    price.min = 5000;
+    return true;
+  } else if(value === 'palace') {
+    price.placeholder = 10000;
+    price.min = 10000;
+    return true;
+  }
+};
+
+pristine.addValidator(form.querySelector('#type'), validateType);
+
+
+const validateTimein = function(value) {
+  const timeoutOptions = form.querySelectorAll('#timeout > option');
+
+  if(value === '12:00') {
+    timeoutOptions.forEach((el) => {
+      if(el.value === '12:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  } else if(value === '13:00') {
+    timeoutOptions.forEach((el) => {
+      if(el.value === '13:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  } else if(value === '14:00') {
+    timeoutOptions.forEach((el) => {
+      if(el.value === '14:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  }
+};
+
+pristine.addValidator(form.querySelector('#timein'), validateTimein);
+
+
+const validateTimeout = function(value) {
+  const timeinOptions = form.querySelectorAll('#timein > option');
+
+  if(value === '12:00') {
+    timeinOptions.forEach((el) => {
+      if(el.value === '12:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  } else if(value === '13:00') {
+    timeinOptions.forEach((el) => {
+      if(el.value === '13:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  } else if(value === '14:00') {
+    timeinOptions.forEach((el) => {
+      if(el.value === '14:00') {
+        el.selected = true;
+      }
+    });
+    return true;
+  }
+};
+
+pristine.addValidator(form.querySelector('#timeout'), validateTimeout);
+
+
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
