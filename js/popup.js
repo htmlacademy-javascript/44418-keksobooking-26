@@ -1,5 +1,5 @@
-const setAuthorAvatar= function(card, avatar) {
-  const elm = card.querySelector('.popup__avatar');
+const setAuthorAvatar= function(popup, avatar) {
+  const elm = popup.querySelector('.popup__avatar');
   if(avatar) {
     elm.src = avatar;
   } else {
@@ -7,8 +7,8 @@ const setAuthorAvatar= function(card, avatar) {
   }
 };
 
-const setOfferTitle = function(card, title) {
-  const elm = card.querySelector('.popup__title');
+const setOfferTitle = function(popup, title) {
+  const elm = popup.querySelector('.popup__title');
   if(title) {
     elm.textContent = title;
   } else {
@@ -16,8 +16,8 @@ const setOfferTitle = function(card, title) {
   }
 };
 
-const setOfferAddress = function(card, address) {
-  const elm = card.querySelector('.popup__text--address');
+const setOfferAddress = function(popup, address) {
+  const elm = popup.querySelector('.popup__text--address');
   if(address) {
     elm.textContent = address;
   } else {
@@ -25,8 +25,8 @@ const setOfferAddress = function(card, address) {
   }
 };
 
-const setOfferPrice = function(card, price) {
-  const elm = card.querySelector('.popup__text--price');
+const setOfferPrice = function(popup, price) {
+  const elm = popup.querySelector('.popup__text--price');
   if(price) {
     elm.textContent = `${price}  ₽/ночь`;
   } else {
@@ -34,8 +34,8 @@ const setOfferPrice = function(card, price) {
   }
 };
 
-const setOfferCapacity= function(card, capacity) {
-  const elm = card.querySelector('.popup__text--capacity');
+const setOfferCapacity= function(popup, capacity) {
+  const elm = popup.querySelector('.popup__text--capacity');
   const {rooms, guests} = capacity;
   if(rooms >= 0 && guests >= 0) {
     elm.textContent = `${rooms} комнаты для ${guests} гостей`;
@@ -44,8 +44,8 @@ const setOfferCapacity= function(card, capacity) {
   }
 };
 
-const setOfferTime= function(card, time) {
-  const elm = card.querySelector('.popup__text--time');
+const setOfferTime= function(popup, time) {
+  const elm = popup.querySelector('.popup__text--time');
   const {checkin, checkout} = time;
   if(checkin && checkout) {
     elm.textContent = `Заезд после ${checkin}, выезд до ${checkout}`;
@@ -54,8 +54,8 @@ const setOfferTime= function(card, time) {
   }
 };
 
-const setOfferDescription = function(card, description) {
-  const elm = card.querySelector('.popup__description');
+const setOfferDescription = function(popup, description) {
+  const elm = popup.querySelector('.popup__description');
   if(description) {
     elm.textContent = description;
   } else {
@@ -63,8 +63,8 @@ const setOfferDescription = function(card, description) {
   }
 };
 
-const setOfferType = function(card, type) {
-  const elm = card.querySelector('.popup__type');
+const setOfferType = function(popup, type) {
+  const elm = popup.querySelector('.popup__type');
   switch(type) {
     case 'flat':
       elm.textContent = 'Квартира';
@@ -86,8 +86,8 @@ const setOfferType = function(card, type) {
   }
 };
 
-const setOfferFeatures = function(card, features) {
-  const elm = card.querySelector('.popup__features');
+const setOfferFeatures = function(popup, features) {
+  const elm = popup.querySelector('.popup__features');
   elm.textContent = '';
   if(features.length > 0) {
     features.forEach((element) => {
@@ -101,8 +101,8 @@ const setOfferFeatures = function(card, features) {
   }
 };
 
-const setOfferPhotos = function(card, photos) {
-  const elm = card.querySelector('.popup__photos');
+const setOfferPhotos = function(popup, photos) {
+  const elm = popup.querySelector('.popup__photos');
   elm.textContent = '';
   if(photos.length > 0) {
     photos.forEach((element) => {
@@ -119,31 +119,25 @@ const setOfferPhotos = function(card, photos) {
   }
 };
 
-const renderСards = function(data) {
-  const mapCanvas = document.querySelector('#map-canvas');
-  const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
-  const cards = [];
+const createPopup = function(data) {
+  const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const popupElement = popupTemplate.cloneNode(true);
 
-  data.forEach(({author, offer}) => {
-    const card = cardTemplate.cloneNode(true);
-    const {avatar} = author;
-    const {title, address, price, rooms, guests, checkin, checkout, type, description, features, photos} = offer;
+  const {avatar} = data.author;
+  const {title, address, price, rooms, guests, checkin, checkout, type, description, features, photos} = data.offer;
 
-    setAuthorAvatar(card, avatar);
-    setOfferTitle(card, title);
-    setOfferAddress(card, address);
-    setOfferPrice(card, price);
-    setOfferCapacity(card, {rooms, guests});
-    setOfferTime(card, {checkin, checkout});
-    setOfferDescription(card, description);
-    setOfferType(card, type);
-    setOfferFeatures(card, features);
-    setOfferPhotos(card, photos);
+  setAuthorAvatar(popupElement, avatar);
+  setOfferTitle(popupElement, title);
+  setOfferAddress(popupElement, address);
+  setOfferPrice(popupElement, price);
+  setOfferCapacity(popupElement, {rooms, guests});
+  setOfferTime(popupElement, {checkin, checkout});
+  setOfferDescription(popupElement, description);
+  setOfferType(popupElement, type);
+  setOfferFeatures(popupElement, features);
+  setOfferPhotos(popupElement, photos);
 
-    cards.push(card);
-  });
-
-  mapCanvas.append(cards[7]);
+  return popupElement;
 };
 
-export {renderСards};
+export {createPopup};

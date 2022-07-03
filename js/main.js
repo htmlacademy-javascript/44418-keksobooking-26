@@ -1,8 +1,4 @@
-import { dataAds } from './data.js';
-import { renderСards } from './card.js';
-import { doInactiveForm, doActiveForm } from './form.js';
+import { data } from './data.js';
+import { addPoints } from './map.js';
 
-renderСards(dataAds());
-
-doInactiveForm();
-doActiveForm();
+addPoints(data());
