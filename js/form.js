@@ -1,5 +1,11 @@
+import { createSlider } from './slider.js';
+
 const form = document.querySelector('.ad-form');
 const filter = document.querySelector('.map__filters');
+const sliderElement = form.querySelector('.ad-form__slider');
+const priceElement = form.querySelector('#price');
+
+createSlider(sliderElement, priceElement);
 
 const doInactiveForm= function() {
   const formElements = [...form.children];
@@ -88,22 +94,52 @@ const validateType = function(value) {
   if(value === 'bungalow') {
     price.placeholder = 0;
     price.min = 0;
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: 100000
+      }
+    });
     return true;
   } else if(value === 'flat') {
     price.placeholder = 1000;
     price.min = 1000;
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 1000,
+        max: 100000
+      }
+    });
     return true;
   } else if(value === 'hotel') {
     price.placeholder = 3000;
     price.min = 3000;
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 3000,
+        max: 100000
+      }
+    });
     return true;
   } else if(value === 'house') {
     price.placeholder = 5000;
     price.min = 5000;
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 5000,
+        max: 100000
+      }
+    });
     return true;
   } else if(value === 'palace') {
     price.placeholder = 10000;
     price.min = 10000;
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 10000,
+        max: 100000
+      }
+    });
     return true;
   }
 };
@@ -177,4 +213,4 @@ form.addEventListener('submit', (evt) => {
 });
 
 
-export {doInactiveForm, doActiveForm};
+export {doInactiveForm, doActiveForm, form};
