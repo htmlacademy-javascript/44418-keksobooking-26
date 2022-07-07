@@ -37,6 +37,7 @@ const addEventMessage = function(elm) {
   document.addEventListener('keydown', onEscMessageKeydown);
   elm.addEventListener('click', () => {
     closeMessage();
+    document.removeEventListener('keydown', onEscMessageKeydown);
   });
 };
 
