@@ -8,9 +8,9 @@ const map = L.map('map-canvas')
     doActiveForm();
   })
   .setView({
-    lat: 35.6895,
-    lng: 139.692,
-  }, 12);
+    lat: 35.68952,
+    lng: 139.69199,
+  }, 13);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -34,25 +34,22 @@ const pinIcon = L.icon({
 const markerGroup = L.layerGroup().addTo(map);
 
 
-const createMainMarker = function() {
-  const marker = L.marker(
-    {
-      lat: 35.6895,
-      lng: 139.692,
-    },
-    {
-      draggable: true,
-      icon: mainPinIcon,
-    },
-  );
-  marker.addTo(markerGroup);
+const mainPinMarker = L.marker(
+  {
+    lat: 35.68952,
+    lng: 139.69199,
+  },
+  {
+    draggable: true,
+    icon: mainPinIcon,
+  },
+);
+mainPinMarker.addTo(markerGroup);
 
-  marker.on('moveend', (evt) => {
-    const {lat, lng} = evt.target.getLatLng();
-    form.querySelector('#address').value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-  });
-};
-createMainMarker();
+mainPinMarker.on('moveend', (evt) => {
+  const {lat, lng} = evt.target.getLatLng();
+  form.querySelector('#address').value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+});
 
 
 const createMarker = function(point) {
@@ -75,4 +72,4 @@ const addPoints = function(data) {
   });
 };
 
-export { addPoints };
+export {addPoints, mainPinMarker};

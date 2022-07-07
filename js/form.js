@@ -1,9 +1,14 @@
-import { createSlider } from './slider.js';
+import {createSlider} from './slider.js';
+import {showMessageSuccess, showMessageError} from './util.js';
+import {sendData} from './api.js';
+import {mainPinMarker} from './map.js';
 
 const form = document.querySelector('.ad-form');
 const filter = document.querySelector('.map__filters');
 const sliderElement = form.querySelector('.ad-form__slider');
 const priceElement = form.querySelector('#price');
+const submitButton = form.querySelector('.ad-form__submit');
+const resetButton = form.querySelector('.ad-form__reset');
 
 createSlider(sliderElement, priceElement);
 
@@ -206,10 +211,46 @@ const validateTimeout = function(value) {
 
 pristine.addValidator(form.querySelector('#timeout'), validateTimeout);
 
+const blockSubmitButton = function() {
+  submitButton.disabled = true;
+};
+
+const unblockSubmitButton = function() {
+  submitButton.disabled = false;
+};
+
+const resetForm = function() {
+  form.reset();
+  filter.reset();
+  mainPinMarker.setLatLng({
+    lat: 35.68952,
+    lng: 139.69199,
+  });
+};
+
+resetButton.addEventListener('click', resetForm);
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  const isValid = pristine.validate();
+  const formData = new FormData(evt.target);
+
+  if(isValid) {
+    blockSubmitButton();
+    sendData(
+      () => {
+        showMessageSuccess();
+        unblockSubmitButton();
+        resetForm();
+      },
+      () => {
+        showMessageError();
+        unblockSubmitButton();
+      },
+      formData,
+    );
+
+  }
 });
 
 

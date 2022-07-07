@@ -89,7 +89,7 @@ const setOfferType = function(popup, type) {
 const setOfferFeatures = function(popup, features) {
   const elm = popup.querySelector('.popup__features');
   elm.textContent = '';
-  if(features.length > 0) {
+  if(features) {
     features.forEach((element) => {
       const item = document.createElement('li');
       item.classList.add('popup__feature');
@@ -104,7 +104,7 @@ const setOfferFeatures = function(popup, features) {
 const setOfferPhotos = function(popup, photos) {
   const elm = popup.querySelector('.popup__photos');
   elm.textContent = '';
-  if(photos.length > 0) {
+  if(photos) {
     photos.forEach((element) => {
       const photo = document.createElement('img');
       photo.classList.add('popup__photo');
