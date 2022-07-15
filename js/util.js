@@ -63,7 +63,7 @@ const debounce = function(callback, timeoutDelay) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 
 export {showAlertError, showMessageSuccess, showMessageError, debounce};

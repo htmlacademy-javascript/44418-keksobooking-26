@@ -2,9 +2,7 @@ const getData = function(onSuccess, onFail) {
   fetch('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((data) => {
-      data.sort(() => {
-        return Math.random() - 0.5;
-      });
+      data.sort(() => Math.random() - 0.5);
       onSuccess(data.slice(0, 10));
     })
     .catch(() => {

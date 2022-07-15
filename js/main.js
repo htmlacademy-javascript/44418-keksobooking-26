@@ -7,11 +7,11 @@ import {showAlertError, debounce} from './util.js';
 const FILTER_DELAY = 500;
 
 getData((data) => {
-  addPoints(data)
+  addPoints(data);
   setFilterChange(debounce(
     () => filterMap(data),
     FILTER_DELAY,
   ));
-  setResetClick(() => {reset(data)});
-  setFormSubmit((evt) => {submitForm(evt, data)});
+  setResetClick(() => {reset(data);});
+  setFormSubmit((evt) => {submitForm(evt, data);});
 }, showAlertError);

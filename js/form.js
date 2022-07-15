@@ -1,5 +1,5 @@
 import {createSlider} from './slider.js';
-import {showMessageSuccess, showMessageError, showAlertError} from './util.js';
+import {showMessageSuccess, showMessageError} from './util.js';
 import {sendData} from './api.js';
 import {mainPinMarker, addPoints, markerGroup} from './map.js';
 
@@ -236,14 +236,14 @@ const setResetClick = function(cb) {
   resetButton.addEventListener('click', () => {
     cb();
   });
-}
+};
 
 const setFormSubmit = function(cb) {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     cb(evt);
   });
-}
+};
 
 const submitForm = function(evt, data) {
   const formData = new FormData(evt.target);
@@ -263,13 +263,13 @@ const submitForm = function(evt, data) {
       formData,
     );
   }
-}
+};
 
 const setFilterChange = function(cb) {
   filter.addEventListener('change', () => {
     cb();
-  })
-}
+  });
+};
 
 
 export {doInactiveForm, doActiveForm, form, filter, reset, setFilterChange, setResetClick, setFormSubmit, submitForm};
