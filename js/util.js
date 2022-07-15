@@ -57,5 +57,13 @@ const showMessageError = function() {
   addEventMessage(messageElement);
 };
 
+const debounce = function(callback, timeoutDelay) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
 
-export {showAlertError, showMessageSuccess, showMessageError};
+
+export {showAlertError, showMessageSuccess, showMessageError, debounce};

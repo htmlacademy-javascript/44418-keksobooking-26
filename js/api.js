@@ -2,7 +2,10 @@ const getData = function(onSuccess, onFail) {
   fetch('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((data) => {
-      onSuccess(data);
+      data.sort(() => {
+        return Math.random() - 0.5;
+      });
+      onSuccess(data.slice(0, 10));
     })
     .catch(() => {
       onFail('При загрузке данных с сервера произошла ошибка. Попробуйте зайти позже.');

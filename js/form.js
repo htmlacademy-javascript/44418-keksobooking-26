@@ -1,7 +1,7 @@
 import {createSlider} from './slider.js';
-import {showMessageSuccess, showMessageError} from './util.js';
+import {showMessageSuccess, showMessageError, showAlertError} from './util.js';
 import {sendData} from './api.js';
-import {mainPinMarker} from './map.js';
+import {mainPinMarker, addPoints, markerGroup} from './map.js';
 
 const form = document.querySelector('.ad-form');
 const filter = document.querySelector('.map__filters');
@@ -12,7 +12,7 @@ const resetButton = form.querySelector('.ad-form__reset');
 
 createSlider(sliderElement, priceElement);
 
-const doInactiveForm= function() {
+const doInactiveForm = function() {
   const formElements = [...form.children];
   const filterElements = [...filter.children];
 
@@ -41,7 +41,6 @@ const doActiveForm = function() {
     item.disabled = false;
   });
 };
-
 
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
@@ -219,29 +218,43 @@ const unblockSubmitButton = function() {
   submitButton.disabled = false;
 };
 
-const resetForm = function() {
+const reset = function(data) {
   form.reset();
   filter.reset();
+  markerGroup.clearLayers();
+
   mainPinMarker.setLatLng({
     lat: 35.68952,
     lng: 139.69199,
-  });
+  }).addTo(markerGroup);
+
+  addPoints(data);
 };
 
-resetButton.addEventListener('click', resetForm);
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValid = pristine.validate();
+const setResetClick = function(cb) {
+  resetButton.addEventListener('click', () => {
+    cb();
+  });
+}
+
+const setFormSubmit = function(cb) {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    cb(evt);
+  });
+}
+
+const submitForm = function(evt, data) {
   const formData = new FormData(evt.target);
-
+  const isValid = pristine.validate();
   if(isValid) {
     blockSubmitButton();
     sendData(
       () => {
         showMessageSuccess();
         unblockSubmitButton();
-        resetForm();
+        reset(data);
       },
       () => {
         showMessageError();
@@ -249,9 +262,14 @@ form.addEventListener('submit', (evt) => {
       },
       formData,
     );
-
   }
-});
+}
+
+const setFilterChange = function(cb) {
+  filter.addEventListener('change', () => {
+    cb();
+  })
+}
 
 
-export {doInactiveForm, doActiveForm, form};
+export {doInactiveForm, doActiveForm, form, filter, reset, setFilterChange, setResetClick, setFormSubmit, submitForm};
