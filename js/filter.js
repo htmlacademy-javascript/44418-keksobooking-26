@@ -20,6 +20,8 @@ const filterPrice = function(item) {
   if(priceElement.value === 'high') {
     return item.offer.price > 50000;
   }
+
+  return false
 };
 
 const filterRooms = function(item) {
@@ -39,6 +41,8 @@ const filterWifi = function(item) {
   } else if(!wifiElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterDishwasher = function(item) {
@@ -48,6 +52,8 @@ const filterDishwasher = function(item) {
   } else if(!dishwasherElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterParking = function(item) {
@@ -57,6 +63,8 @@ const filterParking = function(item) {
   } else if(!parkingElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterWasher = function(item) {
@@ -66,6 +74,8 @@ const filterWasher = function(item) {
   } else if(!washerElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterElevator = function(item) {
@@ -75,6 +85,8 @@ const filterElevator = function(item) {
   } else if(!elevatorElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterConditioner = function(item) {
@@ -84,6 +96,8 @@ const filterConditioner = function(item) {
   } else if(!conditionerElement.checked) {
     return true;
   }
+
+  return false
 };
 
 const filterMap = function(data) {
