@@ -1,5 +1,5 @@
-import { doActiveForm, doInactiveForm, form} from './form.js';
-import { createPopup } from './popup.js';
+import {doActiveForm, doInactiveForm, form} from './form.js';
+import {createPopup } from './popup.js';
 
 doInactiveForm();
 
@@ -10,7 +10,7 @@ const map = L.map('map-canvas')
   .setView({
     lat: 35.68952,
     lng: 139.69199,
-  }, 13);
+  }, 12);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -44,7 +44,7 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
-mainPinMarker.addTo(markerGroup);
+
 
 mainPinMarker.on('moveend', (evt) => {
   const {lat, lng} = evt.target.getLatLng();
@@ -65,11 +65,12 @@ const createMarker = function(point) {
   marker.addTo(markerGroup).bindPopup(createPopup(point));
 };
 
-
 const addPoints = function(data) {
-  data.forEach((point) => {
+  data.slice(0, 10).forEach((point) => {
     createMarker(point);
   });
+  mainPinMarker.addTo(markerGroup);
 };
 
-export {addPoints, mainPinMarker};
+
+export {addPoints, mainPinMarker, markerGroup};
