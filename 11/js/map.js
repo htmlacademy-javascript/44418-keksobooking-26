@@ -66,7 +66,7 @@ const createMarker = function(point) {
 };
 
 const addPoints = function(data) {
-  data.forEach((point) => {
+  data.slice(0, 10).forEach((point) => {
     createMarker(point);
   });
   mainPinMarker.addTo(markerGroup);
