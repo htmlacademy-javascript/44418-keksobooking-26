@@ -3,6 +3,7 @@ import {addPoints} from './map.js';
 import {setFilterChange, setResetClick, reset, setFormSubmit, submitForm} from './form.js';
 import {filterMap} from './filter.js';
 import {showAlertError, debounce} from './util.js';
+import './form-file.js';
 
 const FILTER_DELAY = 500;
 
