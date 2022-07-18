@@ -51,15 +51,11 @@ const pristine = new Pristine(form, {
   errorTextClass: 'ad-form__error'
 });
 
-const validateTitle = (value) => {
-  return value.length >= 30 && value.length <= 100;
-};
+const validateTitle = (value) => value.length >= 30 && value.length <= 100;
 pristine.addValidator(form.querySelector('#title'), validateTitle, 'От 30 до 100 символов');
 
 
-const validatePrice = (value) => {
-  return value <= 100000;
-};
+const validatePrice = (value) => value <= 100000;
 pristine.addValidator(form.querySelector('#price'), validatePrice, 'Максимальная сумма 100 000 руб');
 
 
