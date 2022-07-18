@@ -1,4 +1,4 @@
-const createSlider = function(elm, input) {
+const createSlider = (elm, input) => {
   noUiSlider.create(elm, {
     range: {
       min: 0,
@@ -8,10 +8,10 @@ const createSlider = function(elm, input) {
     step: 1,
     connect: 'lower',
     format: {
-      to: function (value) {
+      to: (value) => {
         return value.toFixed(0);
       },
-      from: function (value) {
+      from: (value) => {
         return parseFloat(value);
       }
     }

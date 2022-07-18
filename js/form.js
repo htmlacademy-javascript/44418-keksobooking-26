@@ -12,7 +12,7 @@ const resetButton = form.querySelector('.ad-form__reset');
 
 createSlider(sliderElement, priceElement);
 
-const doInactiveForm = function() {
+const doInactiveForm = () => {
   const formElements = [...form.children];
   const filterElements = [...filter.children];
 
@@ -27,7 +27,7 @@ const doInactiveForm = function() {
   });
 };
 
-const doActiveForm = function() {
+const doActiveForm = () => {
   const formElements = [...form.children];
   const filterElements = [...filter.children];
 
@@ -51,19 +51,19 @@ const pristine = new Pristine(form, {
   errorTextClass: 'ad-form__error'
 });
 
-const validateTitle = function(value) {
+const validateTitle = (value) => {
   return value.length >= 30 && value.length <= 100;
 };
 pristine.addValidator(form.querySelector('#title'), validateTitle, 'От 30 до 100 символов');
 
 
-const validatePrice = function(value) {
+const validatePrice = (value) => {
   return value <= 100000;
 };
 pristine.addValidator(form.querySelector('#price'), validatePrice, 'Максимальная сумма 100 000 руб');
 
 
-const validateRoomNumber = function(value) {
+const validateRoomNumber = (value) => {
   const capacityValue = form.querySelector('#capacity').value;
 
   if(value === '1') {
@@ -77,7 +77,7 @@ const validateRoomNumber = function(value) {
   }
 };
 
-const getRoomNumberErrorMessage = function(value) {
+const getRoomNumberErrorMessage = (value) => {
   if(value === '1') {
     return '1 комната — для 1 гостя';
   } else if(value === '2') {
@@ -92,7 +92,7 @@ const getRoomNumberErrorMessage = function(value) {
 pristine.addValidator(form.querySelector('#room_number'), validateRoomNumber, getRoomNumberErrorMessage);
 
 
-const validateType = function(value) {
+const validateType = (value) => {
   const price = form.querySelector('#price');
 
   if(value === 'bungalow') {
@@ -151,7 +151,7 @@ const validateType = function(value) {
 pristine.addValidator(form.querySelector('#type'), validateType);
 
 
-const validateTimein = function(value) {
+const validateTimein = (value) => {
   const timeoutOptions = form.querySelectorAll('#timeout > option');
 
   if(value === '12:00') {
@@ -181,7 +181,7 @@ const validateTimein = function(value) {
 pristine.addValidator(form.querySelector('#timein'), validateTimein);
 
 
-const validateTimeout = function(value) {
+const validateTimeout = (value) => {
   const timeinOptions = form.querySelectorAll('#timein > option');
 
   if(value === '12:00') {
@@ -210,15 +210,15 @@ const validateTimeout = function(value) {
 
 pristine.addValidator(form.querySelector('#timeout'), validateTimeout);
 
-const blockSubmitButton = function() {
+const blockSubmitButton = () => {
   submitButton.disabled = true;
 };
 
-const unblockSubmitButton = function() {
+const unblockSubmitButton = () => {
   submitButton.disabled = false;
 };
 
-const reset = function(data) {
+const reset = (data) => {
   form.reset();
   filter.reset();
   form.querySelector('.ad-form-header__preview > img').src = 'img/muffin-grey.svg';
@@ -234,20 +234,20 @@ const reset = function(data) {
 };
 
 
-const setResetClick = function(cb) {
+const setResetClick = (cb) => {
   resetButton.addEventListener('click', () => {
     cb();
   });
 };
 
-const setFormSubmit = function(cb) {
+const setFormSubmit = (cb) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     cb(evt);
   });
 };
 
-const submitForm = function(evt, data) {
+const submitForm = (evt, data) => {
   const formData = new FormData(evt.target);
   const isValid = pristine.validate();
   if(isValid) {
@@ -267,7 +267,7 @@ const submitForm = function(evt, data) {
   }
 };
 
-const setFilterChange = function(cb) {
+const setFilterChange = (cb) => {
   filter.addEventListener('change', () => {
     cb();
   });

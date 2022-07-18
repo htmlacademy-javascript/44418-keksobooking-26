@@ -52,7 +52,7 @@ mainPinMarker.on('moveend', (evt) => {
 });
 
 
-const createMarker = function(point) {
+const createMarker = (point) => {
   const {lat, lng} = point.location;
 
   const marker = L.marker({
@@ -65,7 +65,7 @@ const createMarker = function(point) {
   marker.addTo(markerGroup).bindPopup(createPopup(point));
 };
 
-const addPoints = function(data) {
+const addPoints = (data) => {
   data.slice(0, 10).forEach((point) => {
     createMarker(point);
   });

@@ -1,12 +1,12 @@
 import {addPoints, markerGroup} from './map.js';
 import {filter} from './form.js';
 
-const filterType = function(item) {
+const filterType = (item) => {
   const typeElement = filter.querySelector('#housing-type');
   return typeElement.value === item.offer.type || typeElement.value === 'any';
 };
 
-const filterPrice = function(item) {
+const filterPrice = (item) => {
   const priceElement = filter.querySelector('#housing-price');
   if(priceElement.value === 'any') {
     return item.offer.price;
@@ -24,17 +24,17 @@ const filterPrice = function(item) {
   return false;
 };
 
-const filterRooms = function(item) {
+const filterRooms = (item) => {
   const roomsElement = filter.querySelector('#housing-rooms');
   return Number(roomsElement.value) === Number(item.offer.rooms) || roomsElement.value === 'any';
 };
 
-const filterQuests = function(item) {
+const filterQuests = (item) => {
   const guestsElement = filter.querySelector('#housing-guests');
   return Number(guestsElement.value) === Number(item.offer.guests) || guestsElement.value === 'any';
 };
 
-const filterWifi = function(item) {
+const filterWifi = (item) => {
   const wifiElement = filter.querySelector('#filter-wifi');
   if(item.offer.features && wifiElement.checked) {
     return item.offer.features.includes(wifiElement.value);
@@ -45,7 +45,7 @@ const filterWifi = function(item) {
   return false;
 };
 
-const filterDishwasher = function(item) {
+const filterDishwasher = (item) => {
   const dishwasherElement = filter.querySelector('#filter-dishwasher');
   if(item.offer.features && dishwasherElement.checked) {
     return item.offer.features.includes(dishwasherElement.value);
@@ -56,7 +56,7 @@ const filterDishwasher = function(item) {
   return false;
 };
 
-const filterParking = function(item) {
+const filterParking = (item) => {
   const parkingElement = filter.querySelector('#filter-parking');
   if(item.offer.features && parkingElement.checked) {
     return item.offer.features.includes(parkingElement.value);
@@ -67,7 +67,7 @@ const filterParking = function(item) {
   return false;
 };
 
-const filterWasher = function(item) {
+const filterWasher = (item) => {
   const washerElement = filter.querySelector('#filter-washer');
   if(item.offer.features && washerElement.checked) {
     return item.offer.features.includes(washerElement.value);
@@ -78,7 +78,7 @@ const filterWasher = function(item) {
   return false;
 };
 
-const filterElevator = function(item) {
+const filterElevator = (item) => {
   const elevatorElement = filter.querySelector('#filter-elevator');
   if(item.offer.features && elevatorElement.checked) {
     return item.offer.features.includes(elevatorElement.value);
@@ -89,7 +89,7 @@ const filterElevator = function(item) {
   return false;
 };
 
-const filterConditioner = function(item) {
+const filterConditioner = (item) => {
   const conditionerElement = filter.querySelector('#filter-conditioner');
   if(item.offer.features && conditionerElement.checked) {
     return item.offer.features.includes(conditionerElement.value);
@@ -100,7 +100,7 @@ const filterConditioner = function(item) {
   return false;
 };
 
-const filterMap = function(data) {
+const filterMap = (data) => {
   markerGroup.clearLayers();
 
   const filtered = data
