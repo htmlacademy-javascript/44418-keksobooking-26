@@ -1,4 +1,4 @@
-const setAuthorAvatar= function(popup, avatar) {
+const setAuthorAvatar= (popup, avatar) => {
   const elm = popup.querySelector('.popup__avatar');
   if(avatar) {
     elm.src = avatar;
@@ -7,7 +7,7 @@ const setAuthorAvatar= function(popup, avatar) {
   }
 };
 
-const setOfferTitle = function(popup, title) {
+const setOfferTitle = (popup, title) => {
   const elm = popup.querySelector('.popup__title');
   if(title) {
     elm.textContent = title;
@@ -16,7 +16,7 @@ const setOfferTitle = function(popup, title) {
   }
 };
 
-const setOfferAddress = function(popup, address) {
+const setOfferAddress = (popup, address) => {
   const elm = popup.querySelector('.popup__text--address');
   if(address) {
     elm.textContent = address;
@@ -25,7 +25,7 @@ const setOfferAddress = function(popup, address) {
   }
 };
 
-const setOfferPrice = function(popup, price) {
+const setOfferPrice = (popup, price) => {
   const elm = popup.querySelector('.popup__text--price');
   if(price) {
     elm.textContent = `${price}  ₽/ночь`;
@@ -34,7 +34,7 @@ const setOfferPrice = function(popup, price) {
   }
 };
 
-const setOfferCapacity= function(popup, capacity) {
+const setOfferCapacity= (popup, capacity) => {
   const elm = popup.querySelector('.popup__text--capacity');
   const {rooms, guests} = capacity;
   if(rooms >= 0 && guests >= 0) {
@@ -44,7 +44,7 @@ const setOfferCapacity= function(popup, capacity) {
   }
 };
 
-const setOfferTime= function(popup, time) {
+const setOfferTime= (popup, time) => {
   const elm = popup.querySelector('.popup__text--time');
   const {checkin, checkout} = time;
   if(checkin && checkout) {
@@ -54,7 +54,7 @@ const setOfferTime= function(popup, time) {
   }
 };
 
-const setOfferDescription = function(popup, description) {
+const setOfferDescription = (popup, description) => {
   const elm = popup.querySelector('.popup__description');
   if(description) {
     elm.textContent = description;
@@ -63,7 +63,7 @@ const setOfferDescription = function(popup, description) {
   }
 };
 
-const setOfferType = function(popup, type) {
+const setOfferType = (popup, type) => {
   const elm = popup.querySelector('.popup__type');
   switch(type) {
     case 'flat':
@@ -86,7 +86,7 @@ const setOfferType = function(popup, type) {
   }
 };
 
-const setOfferFeatures = function(popup, features) {
+const setOfferFeatures = (popup, features) => {
   const elm = popup.querySelector('.popup__features');
   elm.textContent = '';
   if(features) {
@@ -101,7 +101,7 @@ const setOfferFeatures = function(popup, features) {
   }
 };
 
-const setOfferPhotos = function(popup, photos) {
+const setOfferPhotos = (popup, photos) => {
   const elm = popup.querySelector('.popup__photos');
   elm.textContent = '';
   if(photos) {
@@ -119,7 +119,7 @@ const setOfferPhotos = function(popup, photos) {
   }
 };
 
-const createPopup = function(data) {
+const createPopup = (data) => {
   const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
   const popupElement = popupTemplate.cloneNode(true);
 

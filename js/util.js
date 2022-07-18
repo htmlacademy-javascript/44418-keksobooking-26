@@ -1,6 +1,6 @@
 const ALERT_SHOW_TIME = 5000;
 
-const showAlertError = function(message) {
+const showAlertError = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '9999';
   alertContainer.style.position = 'fixed';
@@ -20,12 +20,12 @@ const showAlertError = function(message) {
   }, ALERT_SHOW_TIME);
 };
 
-const closeMessage = function() {
+const closeMessage = () => {
   const element = document.querySelector('#message');
   element.remove();
 };
 
-const onEscMessageKeydown = function(evt) {
+const onEscMessageKeydown = (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closeMessage();
@@ -33,7 +33,7 @@ const onEscMessageKeydown = function(evt) {
   }
 };
 
-const addEventMessage = function(elm) {
+const addEventMessage = (elm) => {
   document.addEventListener('keydown', onEscMessageKeydown);
   elm.addEventListener('click', () => {
     closeMessage();
@@ -41,7 +41,7 @@ const addEventMessage = function(elm) {
   });
 };
 
-const showMessageSuccess = function() {
+const showMessageSuccess = () => {
   const messageTemplate = document.querySelector('#success').content.querySelector('.success');
   const messageElement = messageTemplate.cloneNode(true);
 
@@ -49,7 +49,7 @@ const showMessageSuccess = function() {
   addEventMessage(messageElement);
 };
 
-const showMessageError = function() {
+const showMessageError = () => {
   const messageTemplate = document.querySelector('#error').content.querySelector('.error');
   const messageElement = messageTemplate.cloneNode(true);
 
@@ -57,7 +57,7 @@ const showMessageError = function() {
   addEventMessage(messageElement);
 };
 
-const debounce = function(callback, timeoutDelay) {
+const debounce = (callback, timeoutDelay) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
