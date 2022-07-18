@@ -221,6 +221,8 @@ const unblockSubmitButton = function() {
 const reset = function(data) {
   form.reset();
   filter.reset();
+  form.querySelector('.ad-form-header__preview > img').src = 'img/muffin-grey.svg';
+  form.querySelector('.ad-form__photo > img').src = 'img/muffin-grey.svg';
   markerGroup.clearLayers();
 
   mainPinMarker.setLatLng({
